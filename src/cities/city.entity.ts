@@ -4,18 +4,15 @@ import { DefaultEntity } from '../shared/default.entity';
 @Entity()
 export class City extends DefaultEntity {
   @Column({ default: false })
-  enabled: boolean;
+  isEnabled: boolean;
 
-  @Column()
+  @Column({ nullable: false })
   cityName: string;
 
-  @Column()
-  store: string;
-
-  @Column()
+  @Column({ nullable: false })
   state: string;
 
-  @Column()
+  @Column({ nullable: false })
   stateInitials: string;
 
   @Column({ default: 0 })

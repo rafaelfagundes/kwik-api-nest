@@ -1,26 +1,26 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { DefaultEntity } from '../shared/default.entity';
-import { Store } from "../stores/store.entity";
+import { Store } from '../stores/store.entity';
 import { User } from '../users/user.entity';
 
 @Entity()
 export class Address extends DefaultEntity {
-  @Column()
+  @Column({ nullable: false })
   neighborhood: string;
 
-  @Column()
+  @Column({ nullable: false })
   zipCode: string;
 
   @Column()
   complement: string;
 
-  @Column()
+  @Column({ nullable: false })
   city: string;
 
-  @Column()
+  @Column({ nullable: false })
   street: string;
 
-  @Column()
+  @Column({ nullable: false })
   houseNumber: number;
 
   @Column()
@@ -38,13 +38,11 @@ export class Address extends DefaultEntity {
   @ManyToOne(
     type => User,
     user => user.adresses,
-    { eager: false },
+    { eager: false, onDelete: 'CASCADE' },
   )
   user: User;
 
-  @OneToOne({
-    type=>Store
-  })
+  @OneToOne(type => Store, { onDelete: 'CASCADE' })
   @JoinColumn()
   store: Store;
 

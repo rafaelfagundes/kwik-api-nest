@@ -12,7 +12,7 @@ export class Image extends DefaultEntity {
   @Column({ default: true })
   isApproved: boolean;
 
-  @Column()
+  @Column({ nullable: false })
   externalId: string;
 
   @Column()
@@ -24,7 +24,7 @@ export class Image extends DefaultEntity {
   @Column()
   height: number;
 
-  @Column()
+  @Column({ nullable: false })
   secureUrl: string;
 
   @Column('numeric')

@@ -7,23 +7,23 @@ import { DefaultEntity } from '../shared/default.entity';
 
 @Entity()
 export class Store extends DefaultEntity {
-  @Column()
+  @Column({ nullable: false })
   storeName: string;
 
-  @Column()
+  @Column({ nullable: false })
   email: string;
 
-  @Column()
+  @Column({ nullable: false })
   description: string;
 
-  @Column()
+  @Column({ nullable: false })
   phoneNumber: string;
 
-  @OneToOne(type => Image)
+  @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   banner: Image;
 
-  @OneToOne(type => Image)
+  @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   logo: Image;
 
@@ -36,13 +36,13 @@ export class Store extends DefaultEntity {
   @Column({ default: false })
   isAcceptingPickUp: boolean;
 
-  @Column('numeric')
+  @Column('numeric', { default: 5 })
   rating: number;
 
-  @Column()
+  @Column({ default: 0 })
   likes: number;
 
-  @OneToOne(type => Address)
+  @OneToOne(type => Address, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   address: Address;
 
@@ -52,20 +52,20 @@ export class Store extends DefaultEntity {
   @Column({ default: false })
   isBlocked: boolean;
 
-  @OneToOne(type => Setting)
+  @OneToOne(type => Setting, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   settings: Setting;
 
-  @Column()
+  @Column({ default: 0 })
   numberOfRatings: number;
 
-  @Column()
+  @Column({ default: '#000' })
   predominantColor: string;
 
-  @Column()
+  @Column({ default: '#EEE' })
   backgroundColor: string;
 
-  @OneToOne(type => City)
+  @OneToOne(type => City, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   city: City;
 }
