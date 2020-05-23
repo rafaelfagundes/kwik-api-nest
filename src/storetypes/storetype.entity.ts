@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { DefaultEntity } from '../shared/default.entity';
+import { Store } from '../stores/store.entity';
 
 @Entity()
 export class StoreType extends DefaultEntity {
@@ -14,4 +15,11 @@ export class StoreType extends DefaultEntity {
 
   @Column({ nullable: false })
   slug: string;
+
+  @ManyToOne(
+    type => Store,
+    store => store.storeTypes,
+    { eager: false, onDelete: 'CASCADE' },
+  )
+  store: Store;
 }

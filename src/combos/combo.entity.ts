@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Catalog } from '../catalogs/catalog.entity';
 import { Image } from '../images/image.entity';
 import { DefaultEntity } from '../shared/default.entity';
@@ -33,7 +33,10 @@ export class Combo extends DefaultEntity {
   @JoinColumn()
   image: Image;
 
-  @OneToOne(type => Catalog)
-  @JoinColumn()
+  @ManyToOne(
+    type => Catalog,
+    catalog => catalog.addons,
+    { eager: false, onDelete: 'CASCADE' },
+  )
   catalog: Catalog;
 }

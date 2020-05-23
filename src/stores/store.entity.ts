@@ -1,9 +1,10 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { Address } from '../adresses/address.entity';
 import { City } from '../cities/city.entity';
 import { Image } from '../images/image.entity';
 import { Setting } from '../settings/setting.entity';
 import { DefaultEntity } from '../shared/default.entity';
+import { StoreType } from '../storetypes/storetype.entity';
 
 @Entity()
 export class Store extends DefaultEntity {
@@ -68,4 +69,11 @@ export class Store extends DefaultEntity {
   @OneToOne(type => City, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   city: City;
+
+  @OneToMany(
+    type => StoreType,
+    storeType => storeType.store,
+    { eager: true, onDelete: 'CASCADE' },
+  )
+  storeTypes: StoreType[];
 }

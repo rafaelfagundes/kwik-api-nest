@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { Catalog } from '../catalogs/catalog.entity';
 import { DefaultEntity } from '../shared/default.entity';
 
@@ -13,6 +13,10 @@ export class Addon extends DefaultEntity {
   @Column('money')
   price: number;
 
-  @OneToOne(type => Catalog)
+  @ManyToOne(
+    type => Catalog,
+    catalog => catalog.addons,
+    { eager: false, onDelete: 'CASCADE' },
+  )
   catalog: Catalog;
 }
