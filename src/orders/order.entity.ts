@@ -2,17 +2,7 @@ import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { DefaultEntity } from '../shared/default.entity';
 import { Store } from '../stores/store.entity';
 import { User } from '../users/user.entity';
-
-enum Status {
-  OPEN = 'OPEN',
-  CONFIRMED = 'CONFIRMED',
-  ON_DELIVERY = 'ON_DELIVERY',
-  READY_FOR_PICKUP = 'READY_FOR_PICKUP',
-  CANCELED_BY_USER = 'CANCELED_BY_USER',
-  CANCELED_BY_STORE = 'CANCELED_BY_STORE',
-  EXPIRED = 'EXPIRED',
-  DELIVERED = 'DELIVERED',
-}
+import Status from './status.enum';
 
 @Entity()
 export class Order extends DefaultEntity {

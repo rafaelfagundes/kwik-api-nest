@@ -1,16 +1,7 @@
 import { Column, Entity } from 'typeorm';
 import { DefaultEntity } from '../shared/default.entity';
-
-enum OperationHoursType {
-  CUSTOM = 'CUSTOM',
-  ALWAYS_OPEN = 'ALWAYS_OPEN',
-}
-
-enum DeliveryFeeType {
-  FREE = 'FREE',
-  TABLE = 'TABLE',
-  SINGLE_FEE = 'SINGLE_FEE',
-}
+import DeliveryFeeType from './deliveryfeetype.enum';
+import OperationHoursType from './operationhourstype.enum';
 
 @Entity()
 export class Setting extends DefaultEntity {

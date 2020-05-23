@@ -14,6 +14,7 @@ import { FavoritesModule } from './favorites/favorites.module';
 import { ImagesModule } from './images/images.module';
 import { NotificationsController } from './notifications/notifications.controller';
 import { NotificationsModule } from './notifications/notifications.module';
+import { NotificationsService } from './notifications/notifications.service';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { PushtokensModule } from './pushtokens/pushtokens.module';
@@ -52,6 +53,6 @@ import { UsersModule } from './users/users.module';
     UsersModule,
   ],
   controllers: [AppController, NotificationsController],
-  providers: [AppService],
+  providers: [AppService, NotificationsService],
 })
 export class AppModule {}
