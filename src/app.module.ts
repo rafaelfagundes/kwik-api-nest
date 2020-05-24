@@ -2,8 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AddonsModule } from './addons/addons.module';
 import { AdressesModule } from './adresses/adresses.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CatalogsModule } from './catalogs/catalogs.module';
 import { CitiesModule } from './cities/cities.module';
 import { CombosModule } from './combos/combos.module';
@@ -12,9 +10,7 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { CouponsModule } from './coupons/coupons.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { ImagesModule } from './images/images.module';
-import { NotificationsController } from './notifications/notifications.controller';
 import { NotificationsModule } from './notifications/notifications.module';
-import { NotificationsService } from './notifications/notifications.service';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { PushtokensModule } from './pushtokens/pushtokens.module';
@@ -52,7 +48,5 @@ import { UsersModule } from './users/users.module';
     UsedcouponsModule,
     UsersModule,
   ],
-  controllers: [AppController, NotificationsController],
-  providers: [AppService, NotificationsService],
 })
 export class AppModule {}
