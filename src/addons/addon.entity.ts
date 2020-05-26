@@ -4,7 +4,7 @@ import { DefaultEntity } from '../shared/default.entity';
 
 @Entity()
 export class Addon extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
   @Column()
@@ -14,6 +14,7 @@ export class Addon extends DefaultEntity {
   price: number;
 
   @ManyToOne(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => Catalog,
     catalog => catalog.addons,
     { eager: false, onDelete: 'CASCADE' },

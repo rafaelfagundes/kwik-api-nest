@@ -4,7 +4,7 @@ import { Store } from '../stores/store.entity';
 
 @Entity()
 export class StoreType extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
   @Column({ default: true })
@@ -13,10 +13,11 @@ export class StoreType extends DefaultEntity {
   @Column({ default: 0 })
   listPosition: number;
 
-  @Column({ nullable: false })
+  @Column()
   slug: string;
 
   @ManyToOne(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => Store,
     store => store.storeTypes,
     { eager: false, onDelete: 'CASCADE' },

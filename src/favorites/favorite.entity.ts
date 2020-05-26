@@ -5,10 +5,12 @@ import { User } from '../users/user.entity';
 
 @Entity()
 export class Favorite extends DefaultEntity {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => User, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Store, { nullable: false, onDelete: 'CASCADE' })
   @JoinColumn()
   store: Store;

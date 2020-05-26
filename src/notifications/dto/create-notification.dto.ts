@@ -23,7 +23,10 @@ export class CreateNotificationDTO {
     required: false,
   })
   @IsOptional()
-  @IsEnum(NotificationType)
+  @IsEnum({
+    enum: NotificationType,
+    default: NotificationType.GENERAL,
+  })
   notificationType: NotificationType;
 
   @ApiProperty()

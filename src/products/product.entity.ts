@@ -9,23 +9,24 @@ export class Product extends DefaultEntity {
   @Column({ default: true })
   isEnabled: boolean;
 
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
-  @Column({ nullable: false })
+  @Column()
   description: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Image)
   @JoinColumn()
   image: Image;
 
-  @Column('jsonb', { nullable: false })
+  @Column('jsonb')
   options: string;
 
-  @Column('jsonb', { nullable: false })
+  @Column('jsonb')
   discounts: string;
 
-  @Column('jsonb', { nullable: false })
+  @Column('jsonb')
   addons: string;
 
   @Column('money', { default: 1 })
@@ -34,11 +35,13 @@ export class Product extends DefaultEntity {
   @Column({ default: 0 })
   numberOfSold: number;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Section)
   @JoinColumn()
   section: Section;
 
   @ManyToOne(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => Catalog,
     catalog => catalog.addons,
     { eager: false, onDelete: 'CASCADE' },

@@ -5,22 +5,22 @@ import { User } from '../users/user.entity';
 
 @Entity()
 export class Coupon extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   couponCode: string;
 
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
-  @Column({ nullable: false })
+  @Column()
   description: string;
 
   @Column({ default: false })
   isPublic: boolean;
 
-  @Column({ nullable: false })
+  @Column()
   termsOfUse: string;
 
-  @Column({ nullable: false })
+  @Column()
   validUntil: Date;
 
   @Column('money')
@@ -29,10 +29,12 @@ export class Coupon extends DefaultEntity {
   @Column()
   discountPercentage: number;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => User, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Store, { onDelete: 'CASCADE' })
   @JoinColumn()
   store: Store;

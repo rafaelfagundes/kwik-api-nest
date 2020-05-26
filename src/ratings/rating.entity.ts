@@ -5,7 +5,7 @@ import { User } from '../users/user.entity';
 
 @Entity()
 export class Rating extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
   @Column()
@@ -14,16 +14,18 @@ export class Rating extends DefaultEntity {
   @Column()
   reply: string;
 
-  @Column({ nullable: false })
+  @Column()
   rating: string;
 
   @Column({ default: true })
   isApproved: boolean;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Store, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   store: Store;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => User, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   user: User;

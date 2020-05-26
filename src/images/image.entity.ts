@@ -1,35 +1,51 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity } from 'typeorm';
 import { DefaultEntity } from '../shared/default.entity';
+import { ImageType } from './imageType.enum';
 
 @Entity()
 export class Image extends DefaultEntity {
-  @Column()
+  @ApiProperty()
+  @Column({ default: ImageType.GENERAL })
+  type: ImageType;
+
+  @ApiProperty()
+  @Column({ nullable: true })
   url: string;
 
+  @ApiProperty()
   @Column({ default: false })
   isReviewed: boolean;
 
+  @ApiProperty()
   @Column({ default: true })
   isApproved: boolean;
 
-  @Column({ nullable: false })
+  @ApiProperty()
+  @Column()
   externalId: string;
 
+  @ApiProperty()
   @Column()
   thumbnail: string;
 
-  @Column()
+  @ApiProperty()
+  @Column({ nullable: true })
   width: number;
 
-  @Column()
+  @ApiProperty()
+  @Column({ nullable: true })
   height: number;
 
-  @Column({ nullable: false })
+  @ApiProperty()
+  @Column({ nullable: true })
   secureUrl: string;
 
-  @Column('numeric')
+  @ApiProperty()
+  @Column('numeric', { nullable: true })
   diskSize: number;
 
-  @Column()
+  @ApiProperty()
+  @Column({ nullable: true })
   format: string;
 }

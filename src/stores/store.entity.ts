@@ -8,22 +8,24 @@ import { StoreType } from '../storetypes/storetype.entity';
 
 @Entity()
 export class Store extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   storeName: string;
 
-  @Column({ nullable: false })
+  @Column()
   email: string;
 
-  @Column({ nullable: false })
+  @Column()
   description: string;
 
-  @Column({ nullable: false })
+  @Column()
   phoneNumber: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   banner: Image;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   logo: Image;
@@ -43,6 +45,7 @@ export class Store extends DefaultEntity {
   @Column({ default: 0 })
   likes: number;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Address, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   address: Address;
@@ -53,6 +56,7 @@ export class Store extends DefaultEntity {
   @Column({ default: false })
   isBlocked: boolean;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Setting, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   settings: Setting;
@@ -66,11 +70,13 @@ export class Store extends DefaultEntity {
   @Column({ default: '#EEE' })
   backgroundColor: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => City, { onDelete: 'CASCADE', nullable: false })
   @JoinColumn()
   city: City;
 
   @OneToMany(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => StoreType,
     storeType => storeType.store,
     { eager: true, onDelete: 'CASCADE' },

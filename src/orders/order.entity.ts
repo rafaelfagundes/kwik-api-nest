@@ -6,25 +6,25 @@ import Status from './status.enum';
 
 @Entity()
 export class Order extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   friendlyId: string;
 
-  @Column('jsonb', { nullable: false })
+  @Column('jsonb')
   userDataOnOrder: string;
 
   @Column({ default: Status.OPEN })
   status: Status;
 
-  @Column({ nullable: false })
+  @Column()
   paymentType: string;
 
-  @Column({ nullable: false })
+  @Column()
   deliveryType: string;
 
-  @Column('jsonb', { nullable: false })
+  @Column('jsonb')
   items: string;
 
-  @Column({ nullable: false })
+  @Column()
   orderShortDescription: string;
 
   @Column('money', { default: 1 })
@@ -57,10 +57,12 @@ export class Order extends DefaultEntity {
   @Column('timestamptz')
   cancelationDate: Date;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => User)
   @JoinColumn()
   user: User;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Store)
   @JoinColumn()
   store: Store;

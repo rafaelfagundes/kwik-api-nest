@@ -20,11 +20,11 @@ export class Notification extends DefaultEntity {
   logo: string;
 
   @ApiProperty()
-  @Column({ nullable: false })
+  @Column()
   body: string;
 
   @ApiProperty()
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
   @ApiProperty()
@@ -32,11 +32,13 @@ export class Notification extends DefaultEntity {
   additionalInfo: string;
 
   @ApiProperty()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => User, { onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
 
   @ApiProperty()
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Store, { onDelete: 'CASCADE' })
   @JoinColumn()
   store: Store;

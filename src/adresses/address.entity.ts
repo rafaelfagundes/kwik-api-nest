@@ -1,51 +1,55 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne } from 'typeorm';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { DefaultEntity } from '../shared/default.entity';
-import { Store } from '../stores/store.entity';
 import { User } from '../users/user.entity';
 
 @Entity()
 export class Address extends DefaultEntity {
-  @Column({ nullable: false })
-  neighborhood: string;
+  @ApiProperty()
+  neighbourhood: string;
 
-  @Column({ nullable: false })
+  @ApiProperty()
   zipCode: string;
 
-  @Column()
+  @ApiPropertyOptional()
+  @Column({ nullable: true })
   complement: string;
 
-  @Column({ nullable: false })
+  @ApiProperty()
   city: string;
 
-  @Column({ nullable: false })
+  @ApiProperty()
   street: string;
 
-  @Column({ nullable: false })
+  @ApiProperty()
   houseNumber: number;
 
+  @ApiProperty()
   @Column()
   state: string;
 
-  @Column()
+  @ApiProperty()
+  @Column({ nullable: true })
   latitude: string;
 
-  @Column()
+  @ApiProperty()
+  @Column({ nullable: true })
   longitude: string;
 
+  @ApiPropertyOptional()
   @Column()
   title: string;
 
+  @ApiPropertyOptional({ type: () => User })
   @ManyToOne(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => User,
     user => user.adresses,
-    { eager: false, onDelete: 'CASCADE' },
+    { eager: false, onDelete: 'CASCADE', nullable: true },
   )
   user: User;
 
-  @OneToOne(type => Store, { onDelete: 'CASCADE' })
-  @JoinColumn()
-  store: Store;
-
+  @ApiProperty()
   @Column({ default: true })
   isDefault: boolean;
 }

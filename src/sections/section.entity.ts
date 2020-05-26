@@ -4,13 +4,14 @@ import { DefaultEntity } from '../shared/default.entity';
 
 @Entity()
 export class Section extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   categoryName: string;
 
-  @Column({ nullable: false })
+  @Column()
   description: string;
 
   @ManyToOne(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => Catalog,
     catalog => catalog.addons,
     { eager: false, onDelete: 'CASCADE' },

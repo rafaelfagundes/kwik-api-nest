@@ -8,13 +8,13 @@ export class Combo extends DefaultEntity {
   @Column({ default: true })
   isEnabled: boolean;
 
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
-  @Column({ nullable: false })
+  @Column()
   description: string;
 
-  @Column('money', { nullable: false })
+  @Column('money')
   price: number;
 
   @Column('jsonb')
@@ -23,17 +23,19 @@ export class Combo extends DefaultEntity {
   @Column('jsonb')
   discounts: string;
 
-  @Column('jsonb', { nullable: false })
+  @Column('jsonb')
   items: string;
 
   @Column({ default: 0 })
   numberOfSold: number;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Image)
   @JoinColumn()
   image: Image;
 
   @ManyToOne(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => Catalog,
     catalog => catalog.addons,
     { eager: false, onDelete: 'CASCADE' },

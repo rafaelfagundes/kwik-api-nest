@@ -16,30 +16,34 @@ export class User extends DefaultEntity {
   @Column({ default: false })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   phoneNumber: string;
 
-  @Column('timestamptz')
+  @Column('timestamptz', { nullable: true })
   dateOfBirth: Date;
 
   @Column({ default: 'O' })
   gender: string;
 
   @OneToMany(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => Address,
     address => address.user,
     { eager: true, onDelete: 'CASCADE' },
   )
   adresses: Address[];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Store, { onDelete: 'CASCADE' })
   @JoinColumn()
   store: Store;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => Image, { onDelete: 'CASCADE' })
   @JoinColumn()
   image: Image;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @OneToOne(type => City, { onDelete: 'CASCADE' })
   @JoinColumn()
   selectedCity: City;

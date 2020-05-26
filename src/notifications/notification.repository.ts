@@ -7,7 +7,7 @@ import { Notification } from './notification.entity';
 @EntityRepository(Notification)
 export class NotificationRepository extends Repository<Notification> {
   async createNotification(
-    creatNotificationDto: CreateNotificationDTO,
+    createNotificationDTO: CreateNotificationDTO,
     user: User,
     store: Store,
   ): Promise<Notification> {
@@ -17,7 +17,7 @@ export class NotificationRepository extends Repository<Notification> {
       body,
       title,
       additionalInfo,
-    } = creatNotificationDto;
+    } = createNotificationDTO;
 
     const notification = new Notification();
     notification.logo = logo;

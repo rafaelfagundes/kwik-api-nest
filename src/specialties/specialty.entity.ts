@@ -4,15 +4,16 @@ import { Store } from '../stores/store.entity';
 
 @Entity()
 export class Specialty extends DefaultEntity {
-  @Column({ nullable: false })
+  @Column()
   title: string;
 
-  @Column({ nullable: false })
+  @Column()
   description: string;
 
-  @Column({ nullable: false })
+  @Column()
   slug: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   @ManyToMany(type => Store)
   @JoinTable()
   stores: Store[];

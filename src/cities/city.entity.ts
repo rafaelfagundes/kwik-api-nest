@@ -6,13 +6,13 @@ export class City extends DefaultEntity {
   @Column({ default: false })
   isEnabled: boolean;
 
-  @Column({ nullable: false })
+  @Column()
   cityName: string;
 
-  @Column({ nullable: false })
+  @Column()
   state: string;
 
-  @Column({ nullable: false })
+  @Column()
   stateInitials: string;
 
   @Column({ default: 0 })
