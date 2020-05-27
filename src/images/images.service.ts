@@ -71,6 +71,6 @@ export class ImagesService {
     imageDto.url = image.url;
     imageDto.width = image.width;
 
-    return this.imageRepository.createImage(imageDto);
+    return await this.imageRepository.createImage(imageDto);
   }
 }

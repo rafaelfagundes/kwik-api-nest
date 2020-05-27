@@ -1,0 +1,18 @@
+import { EntityRepository, Repository } from 'typeorm';
+import { CreateXXXXXXXXXXXXDTO } from './dto/create-YYYYYYYYY.dto';
+import { XXXXXXXXXXXX } from './YYYYYYYYY.entity';
+
+@EntityRepository(XXXXXXXXXXXX)
+export class XXXXXXXXXXXXRepository extends Repository<XXXXXXXXXXXX> {
+  async createXXXXXXXXXXXX(
+    createXXXXXXXXXXXXDTO: CreateXXXXXXXXXXXXDTO,
+  ): Promise<XXXXXXXXXXXX> {
+    const {} = createXXXXXXXXXXXXDTO;
+
+    const ZZZZZZZZZZZZZ = new XXXXXXXXXXXX();
+
+    await ZZZZZZZZZZZZZ.save();
+
+    return ZZZZZZZZZZZZZ;
+  }
+}

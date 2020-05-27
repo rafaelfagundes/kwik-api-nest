@@ -1,5 +1,5 @@
-import { Address } from 'src/adresses/address.entity';
 import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import { Address } from '../adresses/address.entity';
 import { City } from '../cities/city.entity';
 import { Image } from '../images/image.entity';
 import { DefaultEntity } from '../shared/default.entity';

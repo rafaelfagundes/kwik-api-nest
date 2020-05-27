@@ -1,0 +1,16 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+
+@Injectable()
+export class ZZZZZZZZZService {
+  constructor(
+    @InjectRepository(XXXXXXXXXX)
+    private YYYYYYYYYRepository: XXXXXXXXXXRepository,
+  ) {}
+
+  async createXXXXXXXXXX(
+    createXXXXXXXXXXDTO: CreateXXXXXXXXXXDTO,
+  ): Promise<XXXXXXXXXX> {
+    return await this.YYYYYYYYYRepository.createXXXXXXXXXX(createXXXXXXXXXXDTO);
+  }
+}

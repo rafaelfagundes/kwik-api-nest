@@ -8,5 +8,6 @@ import { ImagesService } from './images.service';
   imports: [TypeOrmModule.forFeature([ImageRepository])],
   controllers: [ImagesController],
   providers: [ImagesService],
+  exports: [ImagesService],
 })
 export class ImagesModule {}

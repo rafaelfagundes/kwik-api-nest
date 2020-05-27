@@ -21,12 +21,12 @@ export class Store extends DefaultEntity {
   phoneNumber: string;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: false })
+  @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: true })
   @JoinColumn()
   banner: Image;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: false })
+  @OneToOne(type => Image, { onDelete: 'CASCADE', nullable: true })
   @JoinColumn()
   logo: Image;
 

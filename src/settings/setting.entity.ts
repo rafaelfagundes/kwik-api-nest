@@ -17,7 +17,7 @@ export class Setting extends DefaultEntity {
   @Column({ default: OperationHoursType.ALWAYS_OPEN })
   operationHoursType: OperationHoursType;
 
-  @Column('jsonb')
+  @Column('jsonb', { nullable: true })
   operationTimetable: string;
 
   @Column({ default: true })
@@ -32,15 +32,15 @@ export class Setting extends DefaultEntity {
   @Column({ default: true })
   acceptsCreditCard: boolean;
 
-  @Column('jsonb')
+  @Column('jsonb', { nullable: true })
   listOfAcceptedCards: string;
 
   @Column({ default: DeliveryFeeType.FREE })
   deliveryFeeType: DeliveryFeeType;
 
-  @Column('jsonb')
+  @Column('jsonb', { nullable: true })
   deliveryFeeList: string;
 
-  @Column('money')
+  @Column('money', { nullable: true })
   deliverySingleFee: number;
 }

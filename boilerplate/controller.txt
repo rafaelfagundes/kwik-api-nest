@@ -1,0 +1,25 @@
+import {
+  Body,
+  Controller,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
+import { ApiResponse } from '@nestjs/swagger';
+import { CreateXXXXXXXXXXDTO } from './dto/create-KKKKKKK.dto';
+import { XXXXXXXXXX } from './KKKKKKK.entity';
+import { YYYYYYYYYService } from './ZZZZZZZZZ.service';
+
+@Controller('ZZZZZZZZZ')
+export class YYYYYYYYYController {
+  constructor(private ZZZZZZZZZService: YYYYYYYYYService) {}
+
+  @Post()
+  @ApiResponse({ type: XXXXXXXXXX })
+  @UsePipes(ValidationPipe)
+  async createXXXXXXXXXX(
+    @Body() createXXXXXXXXXXDTO: CreateXXXXXXXXXXDTO,
+  ): Promise<XXXXXXXXXX> {
+    return await this.ZZZZZZZZZService.createXXXXXXXXXX(createXXXXXXXXXXDTO);
+  }
+}

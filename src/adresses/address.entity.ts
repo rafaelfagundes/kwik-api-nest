@@ -6,9 +6,11 @@ import { User } from '../users/user.entity';
 @Entity()
 export class Address extends DefaultEntity {
   @ApiProperty()
+  @Column()
   neighbourhood: string;
 
   @ApiProperty()
+  @Column()
   zipCode: string;
 
   @ApiPropertyOptional()
@@ -16,12 +18,15 @@ export class Address extends DefaultEntity {
   complement: string;
 
   @ApiProperty()
+  @Column()
   city: string;
 
   @ApiProperty()
+  @Column()
   street: string;
 
   @ApiProperty()
+  @Column()
   houseNumber: number;
 
   @ApiProperty()

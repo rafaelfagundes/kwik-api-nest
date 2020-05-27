@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CombosController } from './combos.controller';
+import { CombosService } from './combos.service';
 
 describe('Combos Controller', () => {
   let controller: CombosController;
@@ -7,6 +8,12 @@ describe('Combos Controller', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CombosController],
+      providers: [
+        {
+          provide: CombosService,
+          useValue: {},
+        },
+      ],
     }).compile();
 
     controller = module.get<CombosController>(CombosController);

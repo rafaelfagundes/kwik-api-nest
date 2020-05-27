@@ -14,6 +14,6 @@ export class ComplaintsService {
   async createComplaint(
     createComplaintDTO: CreateComplaintDTO,
   ): Promise<Complaint> {
-    return this.complaintRepository.createComplaint(createComplaintDTO);
+    return await this.complaintRepository.createComplaint(createComplaintDTO);
   }
 }
