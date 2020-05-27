@@ -25,7 +25,9 @@ export class RatingsService {
   ) {}
 
   async getRating(id: string): Promise<Rating> {
-    return await this.ratingRepository.findOne(id);
+    const rating = await this.ratingRepository.findOne(id);
+    if (!rating) throw new NotFoundException('Rating not found');
+    return rating;
   }
 
   async createRating(createRatingDTO: CreateRatingDTO): Promise<Rating> {
