@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { City } from '../cities/city.entity';
 import { CityRepository } from '../cities/city.repository';
@@ -18,6 +18,13 @@ export class UsersService {
     @InjectRepository(Image) private imageRepository: ImageRepository,
     @InjectRepository(City) private cityRepository: CityRepository,
   ) {}
+
+  async getUserByEmail(email: string): Promise<User> {
+    const user = await this.userRepository.findOne({ email: email });
+    console.log('user', user);
+    if (!user) throw new NotFoundException('User not found');
+    return user;
+  }
 
   async createUser(createUserDTO: CreateUserDTO): Promise<User> {
     let store = null;

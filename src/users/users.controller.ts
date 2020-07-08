@@ -1,7 +1,9 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -14,6 +16,12 @@ import { UsersService } from './users.service';
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
+
+  @Get()
+  @ApiResponse({ type: User })
+  async getUserByEmail(@Query('email') email: string): Promise<User> {
+    return await this.usersService.getUserByEmail(email);
+  }
 
   @Post()
   @ApiResponse({ type: User })

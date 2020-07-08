@@ -6,6 +6,7 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
+  Query,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -22,7 +23,7 @@ export class RatingsController {
 
   @Get()
   @ApiResponse({ type: Rating })
-  async getRating(@Param('id') id: string): Promise<Rating> {
+  async getRating(@Query('id') id: string): Promise<Rating> {
     return await this.ratingsService.getRating(id);
   }
 
