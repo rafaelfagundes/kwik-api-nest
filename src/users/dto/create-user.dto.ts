@@ -54,5 +54,6 @@ export class CreateUserDTO {
 
   @ApiProperty()
   @IsString()
+  @IsOptional()
   selectedCityId: string;
 }

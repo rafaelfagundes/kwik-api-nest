@@ -34,17 +34,17 @@ export class User extends DefaultEntity {
   adresses: Address[];
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne(type => Store, { onDelete: 'CASCADE' })
+  @OneToOne(type => Store, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn()
   store: Store;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne(type => Image, { onDelete: 'CASCADE' })
+  @OneToOne(type => Image, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn()
   image: Image;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  @OneToOne(type => City, { onDelete: 'CASCADE' })
+  @OneToOne(type => City, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn()
   selectedCity: City;
 }

@@ -7,6 +7,15 @@ import { User } from './user.entity';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
+  // // store
+  // // image
+  // // city
+
+  // async getUserByEmail(email: string){
+  //   const qb = this.createQueryBuilder('user');
+  //   const user = qb.leftJoinAndSelect('')
+  // }
+
   async createUser(
     createUserDTO: CreateUserDTO,
     store: Store,
