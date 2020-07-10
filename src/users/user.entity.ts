@@ -13,7 +13,7 @@ export class User extends DefaultEntity {
   @Column({ default: false })
   lastName: string;
 
-  @Column({ default: false })
+  @Column({ default: false, unique: true })
   email: string;
 
   @Column({ nullable: true })
