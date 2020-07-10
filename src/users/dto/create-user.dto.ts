@@ -28,6 +28,10 @@ export class CreateUserDTO {
   email: string;
 
   @ApiProperty()
+  @IsOptional()
+  password: string;
+
+  @ApiProperty()
   @IsPhoneNumber('BR')
   @IsOptional()
   phoneNumber: string;
