@@ -7,12 +7,14 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import Axios from 'axios';
+import * as FirebaseAdmin from 'firebase-admin';
 import { OAuth2Client } from 'google-auth-library';
 import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { AuthCredentialsDTO } from './auth-credentials.dto';
 import { AuthResultDto } from './auth-result.dto';
 import { LoginType } from './login-type.enum';
+
 require('dotenv').config();
 
 @Injectable()
@@ -21,6 +23,24 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
   ) {}
+
+  private async checkEmailAndPasswordAccessToken(
+    token: string,
+    email: string,
+  ): Promise<boolean> {
+    try {
+      const response = await FirebaseAdmin.auth().verifyIdToken(token);
+
+      if (response.email === email) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log('error', error);
+      return false;
+    }
+  }
 
   private async checkFacebookAccessToken(token: string): Promise<boolean> {
     try {
@@ -73,6 +93,7 @@ export class AuthService {
         return false;
       }
     } catch (error) {
+      console.log(error);
       throw new InternalServerErrorException(
         'FATAL: Google token debug not working',
       );
@@ -95,7 +116,22 @@ export class AuthService {
       case LoginType.APPLE:
         throw new NotImplementedException();
       case LoginType.EMAIL:
-        throw new NotImplementedException();
+        isValidUser = await this.checkEmailAndPasswordAccessToken(
+          authCredentials.secret,
+          authCredentials.email,
+        );
+        if (isValidUser) {
+          const user = await this.usersService.getUserByEmail(
+            authCredentials.email,
+          );
+
+          if (user) {
+            const token = this.generateToken(user);
+            return new AuthResultDto(user, token);
+          }
+        } else {
+          throw new ForbiddenException();
+        }
       case LoginType.FACEBOOK:
         isValidUser = await this.checkFacebookAccessToken(
           authCredentials.secret,
