@@ -22,6 +22,7 @@ import { StoresModule } from './stores/stores.module';
 import { StoretypesModule } from './storetypes/storetypes.module';
 import { UsedcouponsModule } from './usedcoupons/usedcoupons.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { UsersModule } from './users/users.module';
     StoretypesModule,
     UsedcouponsModule,
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
