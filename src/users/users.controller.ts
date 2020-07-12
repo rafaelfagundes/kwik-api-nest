@@ -4,12 +4,13 @@ import {
   Controller,
   Get,
   InternalServerErrorException,
-  Logger,
   Post,
-  Query,
+  Req,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import * as firebaseAdmin from 'firebase-admin';
 import { CreateUserDTO } from './dto/create-user.dto';
@@ -23,17 +24,16 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
+  @UseGuards(AuthGuard())
   @ApiResponse({ type: User })
-  async getUserByEmail(@Query('email') email: string): Promise<User> {
-    return await this.usersService.getUserByEmail(email);
+  async getUser(@Req() req: any) {
+    return await req.user;
   }
 
   @Post()
   @ApiResponse({ type: User })
   @UsePipes(ValidationPipe)
   async createUser(@Body() createUserDTO: CreateUserDTO): Promise<User> {
-    const logger = new Logger('@createUser');
-    logger.log('/users/user-and-password');
     return await this.usersService.createUser(createUserDTO);
   }
 
@@ -43,9 +43,6 @@ export class UsersController {
   async createUserWithEmailAndPassword(
     @Body() createUserDTO: CreateUserDTO,
   ): Promise<User> {
-    const logger = new Logger('@createUserWithEmailAndPassword');
-    logger.log('/users/user-and-password');
-
     const newUser = new NewFirebaseUserDTO(
       createUserDTO.email,
       false,
@@ -56,16 +53,28 @@ export class UsersController {
     );
 
     try {
-      await firebaseAdmin.auth().createUser(newUser);
-      return await this.usersService.createUser(createUserDTO);
+      const response = await this.usersService.getUserByEmail(
+        createUserDTO.email,
+      );
+      if (response) {
+        throw new ConflictException(
+          'Este usuário já está cadastrado no sistema',
+        );
+      } else {
+        await firebaseAdmin.auth().createUser(newUser);
+        return await this.usersService.createUser(createUserDTO);
+      }
     } catch (error) {
+      console.log('error', error);
       if (error?.errorInfo?.code === 'auth/email-already-exists') {
         throw new ConflictException(
           'Este usuário já está cadastrado no sistema',
         );
+      } else if (error?.status === 409) {
+        throw new ConflictException(error.response.message);
+      } else {
+        throw new InternalServerErrorException();
       }
-
-      throw new InternalServerErrorException();
     }
   }
 }

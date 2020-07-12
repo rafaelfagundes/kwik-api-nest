@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CityRepository } from '../cities/city.repository';
 import { ImageRepository } from '../images/image.repository';
@@ -15,6 +16,7 @@ import { UsersService } from './users.service';
       StoreRepository,
       CityRepository,
     ]),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
   ],
   controllers: [UsersController],
   providers: [UsersService],

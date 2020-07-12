@@ -13,6 +13,7 @@ import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { AuthCredentialsDTO } from './auth-credentials.dto';
 import { AuthResultDto } from './auth-result.dto';
+import { JwtPayload } from './jwt-payload.interface';
 import { LoginType } from './login-type.enum';
 
 require('dotenv').config();
@@ -101,9 +102,8 @@ export class AuthService {
   }
 
   private generateToken(user: User): string {
-    const payload = {
+    const payload: JwtPayload = {
       id: user.id,
-      email: user.email,
     };
     const token = this.jwtService.sign(payload);
     return token;

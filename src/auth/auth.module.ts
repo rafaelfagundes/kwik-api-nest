@@ -9,6 +9,7 @@ import { UserRepository } from '../users/user.repository';
 import { UsersService } from '../users/users.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { JwtStrategy } from './jwt.strategy';
 require('dotenv').config();
 
 @Module({
@@ -28,6 +29,7 @@ require('dotenv').config();
     ]),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UsersService],
+  providers: [AuthService, UsersService, JwtStrategy],
+  exports: [JwtStrategy, PassportModule],
 })
 export class AuthModule {}
