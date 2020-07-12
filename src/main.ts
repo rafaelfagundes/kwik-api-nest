@@ -13,7 +13,6 @@ async function bootstrap() {
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount as any),
-    databaseURL: 'https://kwik-entregas.firebaseio.com',
   });
 
   if (process.env.NODE_ENV && process.env.NODE_ENV === 'development') {
