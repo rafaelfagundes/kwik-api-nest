@@ -2,6 +2,7 @@ require('dotenv').config();
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule } from '@nestjs/swagger';
+import * as basicAuth from 'express-basic-auth';
 import * as admin from 'firebase-admin';
 import { AppModule } from './app.module';
 import * as serviceAccount from './config/firebase.config.json';
@@ -15,10 +16,28 @@ async function bootstrap() {
     credential: admin.credential.cert(serviceAccount as any),
   });
 
-  if (process.env.NODE_ENV && process.env.NODE_ENV === 'development') {
-    const document = SwaggerModule.createDocument(app, swaggerOptions);
-    SwaggerModule.setup('api', app, document);
-  }
+  const apiPath = '/api';
+  const apiUser = process.env.SWAGGER_USER;
+  const apiPass = process.env.SWAGGER_PASSWORD;
+
+  app.use(
+    apiPath,
+    basicAuth({
+      challenge: true,
+      users: { [apiUser]: apiPass },
+    }),
+  );
+
+  app.use(
+    '/api-json',
+    basicAuth({
+      challenge: true,
+      users: { [apiUser]: apiPass },
+    }),
+  );
+
+  const document = SwaggerModule.createDocument(app, swaggerOptions);
+  SwaggerModule.setup(apiPath, app, document);
 
   await app.listen(process.env.NEST_PORT);
 

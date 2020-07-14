@@ -57,8 +57,8 @@ $ yarn test:e2e
 $ yarn test:cov
 ```
 
-## Stay in touch
+## Contacts
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Rafael Fagundes
+rafaelcflima@gmail.com
+Full Cycle Dev
