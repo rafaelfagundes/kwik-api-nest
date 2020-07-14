@@ -1,3 +1,4 @@
+echo NODE_ENV=production >> .env
 echo NEST_PORT=$NEST_PORT >> .env
 echo DB_HOST=$DB_HOST >> .env
 echo DB_PORT=$DB_PORT >> .env
@@ -11,3 +12,5 @@ echo JWT_SECRET=$JWT_SECRET >> .env
 echo FACEBOOK_APP_ID=$FACEBOOK_APP_ID >> .env
 echo FACEBOOK_APP_SECRET=$FACEBOOK_APP_SECRET >> .env
 echo GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID >> .env
+echo SWAGGER_USER=$SWAGGER_USER >> .env
+echo SWAGGER_PASSWORD=$SWAGGER_PASSWORD >> .env
